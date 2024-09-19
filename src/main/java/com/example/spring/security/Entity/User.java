@@ -1,24 +1,23 @@
-package Entity;
+package com.example.spring.security.Entity;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
-@Entity
+@ToString
+@Table(name = "users")
 public class User implements UserDetails {
+
+    public User(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +38,7 @@ public class User implements UserDetails {
     @Column
     private Boolean locked;
 
+    @Column
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
