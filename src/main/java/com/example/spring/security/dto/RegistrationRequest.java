@@ -1,4 +1,4 @@
-package com.example.spring.security.DTO;
+package com.example.spring.security.dto;
 
 import lombok.*;
 

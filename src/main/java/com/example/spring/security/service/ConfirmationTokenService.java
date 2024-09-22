@@ -1,7 +1,7 @@
-package com.example.spring.security.Service;
+package com.example.spring.security.service;
 
-import com.example.spring.security.Entity.ConfirmationToken;
-import com.example.spring.security.Repository.ConfirmationTokenRepository;
+import com.example.spring.security.entity.ConfirmationToken;
+import com.example.spring.security.repository.ConfirmationTokenRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

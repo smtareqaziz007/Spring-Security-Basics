@@ -1,10 +1,9 @@
-package com.example.spring.security.Controller;
+package com.example.spring.security.controller;
 
-import com.example.spring.security.DTO.RegistrationRequest;
-import com.example.spring.security.Service.RegistrationService;
+import com.example.spring.security.dto.RegistrationRequest;
+import com.example.spring.security.service.RegistrationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

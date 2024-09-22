@@ -1,10 +1,9 @@
-package com.example.spring.security.Security.Config;
+package com.example.spring.security.security.Config;
 
-import com.example.spring.security.Service.UserService;
+import com.example.spring.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -40,10 +40,16 @@ public class WebSecurityConfig {
                                 .loginProcessingUrl("/login")
                                 .defaultSuccessUrl("/")
                                 .permitAll()
-                                .failureUrl("/login?error=true"))
+                                .failureUrl("/login?error=true")
+                )
+                .logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .permitAll()
+                )
+                .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable); // Disable CSRF temporarily
         return http.build();
-////        http.sessionManagement(session -> {session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);});
     }
 
     @Autowired
@@ -52,13 +58,4 @@ public class WebSecurityConfig {
                 .userDetailsService(userService)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
-
-//    @Bean
-//    public DaoAuthenticationProvider daoAuthenticationProvider() {
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
-//        daoAuthenticationProvider.setUserDetailsService(userService);
-//        return daoAuthenticationProvider;
-//    }
-
 }

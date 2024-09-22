@@ -1,6 +1,6 @@
-package com.example.spring.security.Repository;
+package com.example.spring.security.repository;
 
-import com.example.spring.security.Entity.ConfirmationToken;
+import com.example.spring.security.entity.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

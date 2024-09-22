@@ -1,9 +1,9 @@
-package com.example.spring.security.Service;
+package com.example.spring.security.service;
 
-import com.example.spring.security.DTO.RegistrationRequest;
-import com.example.spring.security.Entity.ConfirmationToken;
-import com.example.spring.security.Entity.User;
-import com.example.spring.security.Entity.UserRole;
+import com.example.spring.security.dto.RegistrationRequest;
+import com.example.spring.security.entity.ConfirmationToken;
+import com.example.spring.security.entity.User;
+import com.example.spring.security.entity.UserRole;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
