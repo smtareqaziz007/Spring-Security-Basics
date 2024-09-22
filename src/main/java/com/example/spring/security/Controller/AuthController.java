@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(path = "/register")
 public class AuthController {
 
@@ -24,6 +24,11 @@ public class AuthController {
     public String register(@RequestBody RegistrationRequest request) {
 //        logger.info("------------------------------------Ashchi-----------------------------------------");
         return registrationService.register(request);
+    }
+
+    @GetMapping(path = "confirm")
+    public String confirm(@RequestParam("token") String token) {
+        return registrationService.confirmToken(token);
     }
 
     @GetMapping
