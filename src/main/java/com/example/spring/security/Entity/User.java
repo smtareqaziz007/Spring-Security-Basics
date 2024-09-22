@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    public User(String name, String password, String email, UserRole userRole) {
+    public User(String name, String email, String password, UserRole userRole) {
         this.name = name;
         this.password = password;
         this.email = email;

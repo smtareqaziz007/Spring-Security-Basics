@@ -30,27 +30,20 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize ->
-                                authorize
-                                .requestMatchers( "/", "/register/**" , "/templates/**", "/static/**").permitAll()
+                        authorize
+                                .requestMatchers("/", "/register/**", "/templates/**", "/static/**").permitAll()
                                 .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults())
+                .formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/")
+                                .permitAll()
+                                .failureUrl("/login?error=true"))
                 .csrf(AbstractHttpConfigurer::disable); // Disable CSRF temporarily
         return http.build();
-//
-//        http
-//                .formLogin(Customizer.withDefaults())
-//                .logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                                .permitAll()
-//                )
-//                .csrf(AbstractHttpConfigurer::disable);
-////                .httpBasic(Customizer.withDefaults());
-//
 ////        http.sessionManagement(session -> {session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);});
-//
-//        return http.build();
     }
 
     @Autowired
