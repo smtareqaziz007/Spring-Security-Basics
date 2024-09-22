@@ -35,6 +35,7 @@ public class UserService implements UserDetailsService {
     public String signUpUser(User user) {
         boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
         if (userExists) {
+            // TODO : Exists but not confirmed
             throw new IllegalArgumentException("User already exists");
         }
 
