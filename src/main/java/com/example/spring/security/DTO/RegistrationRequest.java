@@ -6,16 +6,14 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
     private String password;
 
     public RegistrationRequest(){}
 
-    public RegistrationRequest(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public RegistrationRequest(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
     }

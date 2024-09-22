@@ -23,8 +23,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true ,nullable = false)
-    private String username;
+    @Column
+    private String name;
 
     @Column(nullable = false)
     private String password;
@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column
-    private Boolean enabled;
+    private Boolean enabled = false;
 
     @Column
     private Boolean locked;
@@ -42,12 +42,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    public User(String username, String password, String email, Boolean enabled, Boolean locked, UserRole userRole) {
-        this.username = username;
+    public User(String name, String password, String email, UserRole userRole) {
+        this.name = name;
         this.password = password;
         this.email = email;
-        this.enabled = enabled;
-        this.locked = locked;
         this.userRole = userRole;
     }
 
@@ -62,9 +60,8 @@ public class User implements UserDetails {
         return password;
     }
 
-    @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
