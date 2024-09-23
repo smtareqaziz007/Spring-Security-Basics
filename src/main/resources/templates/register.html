@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.25">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+<div class="signup-container">
+    <h1>Sign Up</h1>
+    <form th:action="@{/register}" th:method="post" id="signupForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <div class="error-message" id="nameError">Name is required.</div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <div class="error-message" id="emailError">Please enter a valid email.</div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <div class="error-message" id="passwordError">Password must be at least 6 characters.</div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="divider">or</div>
+
+    <button class="google-btn">
+        <img src="/images/google.png" alt="Google Icon">
+        <span>Sign Up with Google</span>
+    </button>
+</div>
+
+<script src="/js/signup.js"></script>
+</body>

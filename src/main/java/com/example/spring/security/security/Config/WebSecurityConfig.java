@@ -4,6 +4,7 @@ import com.example.spring.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,7 +32,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/", "/register/**", "/templates/**", "/static/**").permitAll()
+                                .requestMatchers("/", "/login/**", "/register/**", "/css/**", "/js/**", "/images/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(
@@ -58,4 +59,17 @@ public class WebSecurityConfig {
                 .userDetailsService(userService)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
+
+//    @Bean
+//    public DaoAuthenticationProvider daoAuthenticationProvider() {
+//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//        daoAuthenticationProvider.setUserDetailsService(userService);
+//        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
+//        return daoAuthenticationProvider;
+//    }
+//
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.authenticationProvider(daoAuthenticationProvider());
+//    }
 }

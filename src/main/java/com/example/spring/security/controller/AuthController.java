@@ -4,9 +4,10 @@ import com.example.spring.security.dto.RegistrationRequest;
 import com.example.spring.security.service.RegistrationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping(path = "/register")
 public class AuthController {
 
@@ -20,9 +21,13 @@ public class AuthController {
 
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
+    public String register(@ModelAttribute RegistrationRequest request) {
 //        logger.info("------------------------------------Ashchi-----------------------------------------");
-        return registrationService.register(request);
+        logger.info("Registering user {}", request);
+        registrationService.register(request);
+
+        return "redirect:/";
+//        return "home";
     }
 
     @GetMapping(path = "confirm")
@@ -31,8 +36,8 @@ public class AuthController {
     }
 
     @GetMapping
-    public String home() {
-        return "home";
+    public String register() {
+        return "register";
     }
 
 }

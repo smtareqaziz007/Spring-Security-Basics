@@ -36,7 +36,7 @@ public class User implements UserDetails {
     private Boolean enabled = false;
 
     @Column
-    private Boolean locked;
+    private Boolean locked = false;
 
     @Column
     @Enumerated(EnumType.STRING)

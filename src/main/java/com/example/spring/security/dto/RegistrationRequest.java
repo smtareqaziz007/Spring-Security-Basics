@@ -3,6 +3,7 @@ package com.example.spring.security.dto;
 import lombok.*;
 
 @Getter
+@Setter
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
