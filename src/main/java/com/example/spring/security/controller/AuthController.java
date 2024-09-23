@@ -24,10 +24,9 @@ public class AuthController {
     public String register(@ModelAttribute RegistrationRequest request) {
 //        logger.info("------------------------------------Ashchi-----------------------------------------");
         logger.info("Registering user {}", request);
-        registrationService.register(request);
+        String token = registrationService.register(request);
 
         return "redirect:/";
-//        return "home";
     }
 
     @GetMapping(path = "confirm")

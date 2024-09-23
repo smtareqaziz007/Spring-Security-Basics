@@ -26,7 +26,7 @@ body {
 }
 
 .signup-container:hover {
-    transform: translateY(-5px); /* Slight lift effect on hover */
+    /*transform: translateY(-5px); !* Slight lift effect on hover *!*/
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 12px 24px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
 
