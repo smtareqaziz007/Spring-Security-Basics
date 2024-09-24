@@ -31,7 +31,9 @@ public class AuthController {
 
     @GetMapping(path = "confirm")
     public String confirm(@RequestParam("token") String token) {
-        return registrationService.confirmToken(token);
+        String confirmMsg = registrationService.confirmToken(token);
+        logger.info("Confirming user: {}", confirmMsg);
+        return "redirect:/login";
     }
 
     @GetMapping

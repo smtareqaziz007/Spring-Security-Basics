@@ -42,7 +42,7 @@ public class RegistrationService {
         //need to make this link dynamic
         String link = "http://localhost:8088/register/confirm?token=" + token;
 
-        emailSender.send(registrationRequest.getEmail(), "Activate your account", buildEmail(registrationRequest.getName(), link));
+//        emailSender.send(registrationRequest.getEmail(), "Activate your account", buildEmail(registrationRequest.getName(), link));
 
         return token;
     }

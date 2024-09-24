@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private String email;
 
     @Column
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     @Column
     private Boolean locked = false;
