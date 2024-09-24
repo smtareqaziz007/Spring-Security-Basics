@@ -12,7 +12,7 @@
 <div class="container">
     <div class="form-container">
         <h1>Create Account</h1>
-        <form th:action="@{/register}" method="post" id="signupForm">
+        <form th:action="@{/register}" th:method="post" id="signupForm">
             <div class="input-group">
                 <input type="text" id="name" name="name" required placeholder=" ">
                 <label for="name">Name</label>
@@ -27,9 +27,12 @@
             </div>
             <button type="submit" class="btn primary-btn">Sign Up</button>
         </form>
-        <button class="btn google-btn">
-            <i class="fab fa-google"></i> Sign up with Google
-        </button>
+        <form action="/oauth2/authorization/google" th:method="get">
+            <button class="btn google-btn">
+
+                <i class="fab fa-google"></i> Sign up with Google
+            </button>
+        </form>
         <div class="error-message" id="errorMessage"></div>
         <div class="signin-link">
             Already have an account? <a href="#" th:href="@{/login}">Sign in</a>

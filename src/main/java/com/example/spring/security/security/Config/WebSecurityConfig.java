@@ -43,6 +43,12 @@ public class WebSecurityConfig {
                                 .permitAll()
                                 .failureUrl("/login?error=true")
                 )
+                .oauth2Login(oauth2Login ->
+                        oauth2Login
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/", true)
+                                .failureUrl("/login?error=true")
+                )
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -60,18 +66,8 @@ public class WebSecurityConfig {
                 .userDetailsService(userService)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
-
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userService);
-//        authProvider.setPasswordEncoder(bCryptPasswordEncoder);
-//        return authProvider;
-//    }
-//
-//    @Autowired
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(authenticationProvider());
-//    }
-
 }
+
+//At any point during the processing of the request,
+// we can retrieve the currently logged-in user’s details from this Authentication object in the security context by using
+//SecurityContextHolder.getContext().getAuthentication();
