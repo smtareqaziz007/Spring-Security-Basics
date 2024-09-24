@@ -11,6 +11,7 @@
     <h1>Welcome Back</h1>
     <form th:action="@{/login}" th:method="post" id="loginForm">
         <div class="input-group">
+<!--        here the field name must be username, based on this spring security checks login-->
             <input type="email" id="email" name="username" required placeholder=" ">
             <label for="email">Email</label>
         </div>
