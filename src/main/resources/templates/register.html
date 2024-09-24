@@ -1,37 +1,44 @@
+<!-- signup.html -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" th:href="@{/css/signup.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="signup-container">
-    <h1>Sign Up</h1>
-    <form th:action="@{/register}" th:method="post" id="signupForm">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-        <div class="error-message" id="nameError">Name is required.</div>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        <div class="error-message" id="emailError">Please enter a valid email.</div>
-
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-        <div class="error-message" id="passwordError">Password must be at least 6 characters.</div>
-
-        <button type="submit">Submit</button>
-    </form>
-
-    <div class="divider">or</div>
-
-    <button class="google-btn">
-        <img src="/images/google.png" alt="Google Icon">
-        <span>Sign Up with Google</span>
-    </button>
+<div class="container">
+    <div class="form-container">
+        <h1>Create Account</h1>
+        <form th:action="@{/register}" method="post" id="signupForm">
+            <div class="input-group">
+                <input type="text" id="name" name="name" required placeholder=" ">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" name="email" required placeholder=" ">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit" class="btn primary-btn">Sign Up</button>
+        </form>
+        <button class="btn google-btn">
+            <i class="fab fa-google"></i> Sign up with Google
+        </button>
+        <div class="error-message" id="errorMessage"></div>
+        <div class="signin-link">
+            Already have an account? <a href="#" th:href="@{/login}">Sign in</a>
+        </div>
+    </div>
 </div>
-
-<script src="/js/signup.js"></script>
+<!--<script th:src="@{/js/signup.js}"></script>-->
 </body>
+</html>
+
+
+
