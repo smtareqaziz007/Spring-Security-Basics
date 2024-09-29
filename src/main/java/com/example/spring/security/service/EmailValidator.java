@@ -13,3 +13,5 @@ public class EmailValidator implements Predicate<String> {
         return email.contains("@");
     }
 }
+
+// Email validation can be done in other ways, I should use that instead of this

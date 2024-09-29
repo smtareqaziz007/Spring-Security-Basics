@@ -26,14 +26,17 @@ public class User implements UserDetails {
     @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
     @Column
-    private Boolean enabled = true;
+    private Boolean isOAuthUser = false;
+
+    @Column
+    private Boolean enabled = true; //temporarily set to true for skipping email activation
 
     @Column
     private Boolean locked = false;
