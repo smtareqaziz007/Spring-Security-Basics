@@ -19,10 +19,13 @@ public class AuthController {
         this.registrationService = registrationService;
     }
 
+    @GetMapping
+    public String register() {
+        return "register";
+    }
 
     @PostMapping
     public String register(@ModelAttribute RegistrationRequest request) {
-//        logger.info("------------------------------------Ashchi-----------------------------------------");
         logger.info("Registering user {}", request);
         String token = registrationService.register(request);
 
@@ -34,11 +37,6 @@ public class AuthController {
         String confirmMsg = registrationService.confirmToken(token);
         logger.info("Confirming user: {}", confirmMsg);
         return "redirect:/login";
-    }
-
-    @GetMapping
-    public String register() {
-        return "register";
     }
 
 }

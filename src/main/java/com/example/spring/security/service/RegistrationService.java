@@ -7,29 +7,24 @@ import com.example.spring.security.entity.User;
 import com.example.spring.security.entity.UserRole;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.LocalDateTime;
 
 @Service
 public class RegistrationService {
 
-    private final EmailValidator emailValidator;
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
-    public RegistrationService(EmailValidator emailValidator, UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
-        this.emailValidator = emailValidator;
+    public RegistrationService(UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
         this.userService = userService;
         this.confirmationTokenService = confirmationTokenService;
         this.emailSender = emailSender;
     }
 
     public String register(RegistrationRequest registrationRequest) {
-        boolean isValidEmail =  emailValidator.test(registrationRequest.getEmail());
-        if(!isValidEmail){
-            throw new IllegalArgumentException("Invalid email");
-        }
         String token = userService.signUpUser(
                 new User(
                         registrationRequest.getName(),
@@ -39,8 +34,8 @@ public class RegistrationService {
                 )
         );
 
-        //need to make this link dynamic
-        String link = "http://localhost:8088/register/confirm?token=" + token;
+        String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+        String link = baseUrl + "/register/confirm?token=" + token;
 
 //        emailSender.send(registrationRequest.getEmail(), "Activate your account", buildEmail(registrationRequest.getName(), link));
 

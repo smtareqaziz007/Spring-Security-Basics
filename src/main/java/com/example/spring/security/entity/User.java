@@ -1,6 +1,7 @@
 package com.example.spring.security.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,13 +24,20 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @NotBlank
+    @Size(min = 1, max = 50)
+    @Column(nullable = false)
     private String name;
 
     @Column
+    @Size(max = 128)
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!*()]).{8,}$",
+            message = "Password must be 8 characters long and combination of " +
+                    "uppercase letters, lowercase letters, numbers, special characters.")
     private String password;
 
-    @Column(nullable = false)
+    @Email
+    @Column(nullable = false , unique = true)
     private String email;
 
     @Column
