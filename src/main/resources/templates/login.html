@@ -10,16 +10,15 @@
 <div class="login-container">
     <h1>Welcome Back</h1>
 
-    <div th:if="${param.error == 'bad_credentials'}" class="error-message">
-        <p>Invalid password. Please try again.</p>
+<!--    thymeleaf treats request parameter as arrays. Because http can have multiple parameters with same name-->
+    <div th:if="${param.error}" th:with="errorMsg=${param.error[0]}">
+        <div th:switch="${errorMsg}" class="error-message">
+            <p th:case="'bad_credentials'">Invalid password. Please try again.</p>
+            <p th:case="'user_not_found'">Email not found. Please try again.</p>
+            <p th:case="'generic_error'">An unexpected error occurred. Please try again later.</p>
+            <p th:case="*" th:text="${errorMsg}">Unknown error occurred.</p>
+        </div>
     </div>
-    <div th:if="${param.error == 'user_not_found'}" class="error-message">
-        <p>Email not found. Please try again.</p>
-    </div>
-    <div th:if="${param.error == 'generic_error'}" class="error-message">
-        <p>An unexpected error occurred. Please try again later.</p>
-    </div>
-
     <form th:action="@{/login}" th:method="post" id="loginForm">
         <div class="input-group">
             <input type="email" id="email" name="username" required placeholder=" ">
