@@ -9,9 +9,19 @@
 <body>
 <div class="login-container">
     <h1>Welcome Back</h1>
+
+    <div th:if="${param.error == 'bad_credentials'}" class="error-message">
+        <p>Invalid password. Please try again.</p>
+    </div>
+    <div th:if="${param.error == 'user_not_found'}" class="error-message">
+        <p>Email not found. Please try again.</p>
+    </div>
+    <div th:if="${param.error == 'generic_error'}" class="error-message">
+        <p>An unexpected error occurred. Please try again later.</p>
+    </div>
+
     <form th:action="@{/login}" th:method="post" id="loginForm">
         <div class="input-group">
-<!--        here the field name must be username, based on this spring security checks login-->
             <input type="email" id="email" name="username" required placeholder=" ">
             <label for="email">Email</label>
         </div>
@@ -20,10 +30,10 @@
             <label for="password">Password</label>
         </div>
         <button type="submit">Log In</button>
-        <div class="error-message" id="errorMessage"></div>
     </form>
+
     <div class="register-link">
-        Don't have an account? <a href="#" th:href="@{/register}">Register here</a>
+        Don't have an account? <a th:href="@{/register}">Register here</a>
     </div>
 </div>
 <script th:src="@{/js/login.js}"></script>
