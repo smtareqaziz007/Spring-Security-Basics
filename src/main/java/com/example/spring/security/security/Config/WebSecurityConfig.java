@@ -59,6 +59,7 @@ public class WebSecurityConfig {
                                 .permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
+//                .csrf(csrf -> csrf.disable());
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(new XorCsrfTokenRequestAttributeHandler())
